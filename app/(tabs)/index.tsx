@@ -1,9 +1,26 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View, Text, FlatList } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { CropCard } from '@/components/CropCard';
+
+export interface Cultivo{
+  id: string;
+  name: string;
+  ubicacion: string;
+  planta: string;
+  imageUrl: string;
+}
+
+const data: Cultivo[] = [
+  {id: '1', name: 'Terreno-F2', ubicacion: 'Huancayo', planta: 'Papa-Solanum tuberosum', imageUrl: './assets/images/papa.jpg'},
+  {id: '2', name: 'Trujillo-B-2', ubicacion: 'Ancash', planta: 'Maiz-Zea mays', imageUrl: '@/assets/images/maiz.jpg'},
+  {id: '3', name: 'Cebolla', ubicacion: 'Ancash', planta: 'Cebolla-Allium cepa', imageUrl: '@/assets/images/cebolla.jpg'},
+  {id: '4', name: 'Ajo', ubicacion: 'Lima', planta: 'Ajo-Allium sativum', imageUrl: '@/assets/images/ajo.png'},
+  {id: '5', name: 'Zanahoria', ubicacion: 'Lima', planta: 'Zanahoria-Daucus carota', imageUrl: '@/assets/images/zanahoria.jpg'},
+
+];
+
+
 
 export default function HomeScreen() {
   return (
@@ -11,41 +28,16 @@ export default function HomeScreen() {
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
       headerImage={
         <Image
-          source={require('@/assets/images/partial-react-logo.png')}
+          source={require('@/assets/images/AgriSenseLogo.jpg')}
           style={styles.reactLogo}
         />
       }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
+      <FlatList
+      data={data}
+      renderItem={({ item }) => <CropCard crop={item} />}
+      keyExtractor={item => item.id}
+    />
+      
     </ParallaxScrollView>
   );
 }
@@ -61,10 +53,11 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   reactLogo: {
-    height: 178,
-    width: 290,
+    height: 270,
+    width: 420,
     bottom: 0,
     left: 0,
     position: 'absolute',
   },
+    
 });
