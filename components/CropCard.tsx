@@ -5,7 +5,7 @@ export const CropCard =  ({ crop }:any) => (
     <View style={styles.card}>
       <Text style={styles.title}>{crop.name}</Text>
       <Text style={styles.description}>{crop.planta}</Text>
-      <Image source={{uri: crop.imageUrl}} style={styles.image} />
+      <Image source={crop.imageUrl} style={styles.image} />
     </View>
   );
 
@@ -23,6 +23,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5,
+        borderWidth: 1,
+        borderColor: '#ddd',
       },
       title: {
         fontSize: 20,

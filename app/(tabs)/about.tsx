@@ -23,11 +23,6 @@ export default function HomeScreen() {
         <ThemedText type="subtitle">¿Qué es Agrisense?</ThemedText>
         <ThemedText>
           Es una aplicacion que busca monitorear los cultivos de los agricultores peruanos. Con la finalidad de dar herramientas para ejercer un mayor control sobre la calidad de sus productos.
-          {/* Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools. */}
         </ThemedText>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
@@ -42,16 +37,6 @@ export default function HomeScreen() {
           Somos un grupo de estudiantes de la <ThemedText type='defaultSemiBold'> Universidad de Nacional Mayor de San Marcos</ThemedText> , que buscan mejorar la calidad de vida de los agricultores de la región.
         </ThemedText>
       </ThemedView>
-      {/* <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView> */}
     </ParallaxScrollView>
   );
 }
