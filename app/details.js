@@ -1,20 +1,17 @@
-import { Stack } from 'expo-router';
+// details.tsx
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-export default function DetailScreen({ route }) {
+export default function DetailScreen({ route, navigation }) {
   const { crop } = route.params;
 
   return (
-    <>
-      <Stack.Screen options={{ title: crop.name }} />
-      <View style={styles.container}>
-        <Image source={crop.imageUrl} style={styles.image} />
-        <Text style={styles.name}>{crop.name}</Text>
-        <Text style={styles.ubicacion}>Ubicación: {crop.ubicacion}</Text>
-        <Text style={styles.planta}>Planta: {crop.planta}</Text>
-      </View>
-    </>
+    <View style={styles.container}>
+      <Image source={crop.imageUrl} style={styles.image} />
+      <Text style={styles.name}>{crop.name}</Text>
+      <Text style={styles.ubicacion}>Ubicación: {crop.ubicacion}</Text>
+      <Text style={styles.planta}>Planta: {crop.planta}</Text>
+    </View>
   );
 }
 
