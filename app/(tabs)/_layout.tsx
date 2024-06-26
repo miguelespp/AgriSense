@@ -41,6 +41,14 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="details"
+        options={{
+          title: 'Home',
+          href: null,
+        }}
+      />
+      
     </Tabs>
   );
 }

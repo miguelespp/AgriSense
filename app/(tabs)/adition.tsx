@@ -4,7 +4,6 @@ import { Image, StyleSheet, Text, TextInput, Button } from "react-native";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import RNPickerSelect from "react-native-picker-select";
 import { UseLocation } from "@/components/UseLocation";
-import { Cultivo } from ".";
 
 export default function HomeScreen() {
   const [formData, setFormData] = useState({

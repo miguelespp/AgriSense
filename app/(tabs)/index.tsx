@@ -4,33 +4,29 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { CropCard } from '@/components/CropCard';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { useNavigation } from 'expo-router';
+import { NavigationProp } from '@react-navigation/native';
+import { Cultivo } from '@/models/Cultivo';
+import useCultivos from '@/hooks/useData';
 
-export interface Cultivo{
-  id: string;
-  name: string;
-  ubicacion: string;
-  planta: string;
-  imageUrl: any;
+type ParamList = {
+  details: {
+    details: Cultivo;
+  }
 }
 
-const data: Cultivo[] = [
-  {id: '1', name: 'Terreno-F2', ubicacion: 'Huancayo', planta: 'Papa-Solanum tuberosum', imageUrl: require('@/assets/images/papa.jpg')},
-  {id: '2', name: 'Zona-B2', ubicacion: 'Ancash', planta: 'Maiz-Zea mays', imageUrl: require('@/assets/images/maiz.jpg')},
-  {id: '3', name: 'Zona-B1', ubicacion: 'Ancash', planta: 'Cebolla-Allium cepa', imageUrl: require('@/assets/images/cebolla.jpg')},
-  {id: '4', name: 'Plantacion-L1', ubicacion: 'Lima', planta: 'Ajo-Allium sativum', imageUrl: require('@/assets/images/ajo.png')},
-  {id: '5', name: 'Plantacion-L2', ubicacion: 'Lima', planta: 'Zanahoria-Daucus carota', imageUrl: require('@/assets/images/zanahoria.jpg')},
-
-];
 
 
 
 export default function HomeScreen() {
 
-  const navigation = useNavigation();
+  const { data } = useCultivos();
+
+  const navigation = useNavigation<NavigationProp<ParamList>>();
   const colorScheme = useColorScheme();
 
   const handlePress = (crop: Cultivo) => {
-    navigation.navigate('moreInfo', {cultivo : crop});
+    // console.log('crop', crop);
+    navigation.navigate(`details`, {details: crop});
   };
 
   const headerBackgroundColor = colorScheme === 'dark' ? '#1D3D47' : '#A1CEDC';
