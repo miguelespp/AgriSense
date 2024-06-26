@@ -1,7 +1,9 @@
+import React from 'react';
 import { Image, StyleSheet, TouchableOpacity, View, Text, FlatList } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { CropCard } from '@/components/CropCard';
+import { useColorScheme } from '@/hooks/useColorScheme';
+import { useNavigation } from 'expo-router';
 
 export interface Cultivo{
   id: string;
@@ -25,32 +27,39 @@ const data: Cultivo[] = [
 export default function HomeScreen() {
 
   const navigation = useNavigation();
+  const colorScheme = useColorScheme();
 
   const handlePress = (crop: Cultivo) => {
-    // navigation.navigate('details');
+    navigation.navigate('moreInfo', {cultivo : crop});
   };
+
+  const headerBackgroundColor = colorScheme === 'dark' ? '#1D3D47' : '#A1CEDC';
+  const textColor = colorScheme === 'dark' ? 'white' : 'black';
+
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47'}}
       headerImage={
         <Image
           source={require('@/assets/images/AgriSenseLogo.jpg')}
           style={styles.reactLogo}
         />
       }>
-      <Text style={styles.titleContainer}>Hola, Carlos 🥵</Text>
-      <FlatList
-      data={data}
-      renderItem={({ item }) => <CropCard crop={item} />}
-      keyExtractor={item => item.id}
-    />
-      
+      <Text style={[styles.titleContainer, { color: textColor }]} >Hola, Carlos 🥵</Text>
+      {
+        data.map((crop) => (
+          <TouchableOpacity style={styles.stepContainer} onPress={() => handlePress(crop)} key={crop.id}>
+            <CropCard crop={crop} />
+          </TouchableOpacity>
+        ))
+      }
     </ParallaxScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   titleContainer: {
+    color: 'light',
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
@@ -68,6 +77,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     position: 'absolute',
+  },
+  linkStyle: {
+    flex: 1,
   },
     
 });
