@@ -1,18 +1,7 @@
-import { Image, StyleSheet, TouchableOpacity, View, Text, FlatList } from 'react-native';
+import { Image, StyleSheet, Text } from 'react-native';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { CropCard } from '@/components/CropCard';
-import { Stack, useLocalSearchParams } from 'expo-router';
 import { useRoute } from '@react-navigation/native';
-
-export interface Cultivo{
-  id: string;
-  name: string;
-  ubicacion: string;
-  planta: string;
-  imageUrl: any;
-}
-
-
+import { Cultivo } from '@/models/Cultivo';
 
 export default function HomeScreen() {
   const route = useRoute();
@@ -36,7 +25,12 @@ export default function HomeScreen() {
         <Text style={styles.title}>Hola, Carlos 🥵</Text>
         <Text style={styles.name}>{cultivo.name}</Text>
         <Text style={styles.ubicacion}>Ubicación: {cultivo.ubicacion}</Text>
-        <Text style={styles.planta}>Planta: {cultivo.planta}</Text>
+        <Text style={styles.stage}>Planta: {cultivo.planta}</Text>
+        <Text style={styles.stage}>Temperatura: {cultivo.temperature}</Text>
+        <Text style={styles.stage}>Humidity: {cultivo.humidity}</Text>
+        <Text style={styles.stage}>Luminity: {cultivo.luminity}</Text>
+        <Text style={styles.stage}>Atm: {cultivo.atm}</Text>
+
       </ParallaxScrollView>
       
     </>
@@ -74,7 +68,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 8,
   },
-  planta: {
+  stage: {
     fontSize: 18,
   },
 });

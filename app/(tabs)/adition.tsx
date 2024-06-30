@@ -8,9 +8,9 @@ import { UseLocation } from "@/components/UseLocation";
 export default function HomeScreen() {
   const [formData, setFormData] = useState({
     name: "",
+    planta: "",
     ubicacion: "",
   });
-  const [selectedItem, setSelectedItem] = useState([]);
 
   const items = [
     { label: "Papa-Solanum tuberosum", value: "Papa" },
@@ -48,20 +48,14 @@ export default function HomeScreen() {
         value={formData.name}
         onChangeText={(text) => handleChange("name", text)}
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Ubicacion"
-        value={formData.ubicacion}
-        onChangeText={(text) => handleChange("email", text)}
-      />
+      
       <RNPickerSelect
-        onValueChange={(value) => setSelectedItem(value)}
+        onValueChange={(value) => handleChange("planta", value)}
         items={items}
         placeholder={{ label: "Seleccionar ítem...", value: null }}
         style={pickerSelectStyles}
       />
-      <UseLocation/>
-
+      <UseLocation onChange={handleChange} />
 
       <Button title="Enviar" onPress={handleSubmit} />
     </ParallaxScrollView>

@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Text, StyleSheet, TextInput, Button, Alert } from "react-native";
 import Geolocation from "@react-native-community/geolocation";
 import * as Location from "expo-location";
 import { View } from "react-native";
-export const UseLocation = () => {
+
+
+export const UseLocation = (onChange:any) => {
   const [location, setLocation] = useState(null);
   const [manualLocation, setManualLocation] = useState({
     address: "",
@@ -19,8 +21,9 @@ export const UseLocation = () => {
       return;
     }
 
-    let location = await Location.getCurrentPositionAsync({});
+    let location:any = await Location.getCurrentPositionAsync({});
     setLocation(location);
+    onChange("location", location);
   };
   const handleSearchLocation = () => {
     getLocationAsync();
@@ -45,7 +48,7 @@ export const UseLocation = () => {
         <Button title="Search Location" onPress={handleSearchLocation} color={'red'} />
       </View>
       {location && (
-          <Text>
+          <Text >
           Latitude: {location.coords.latitude}, Longitude:{" "}
           {location.coords.longitude}
         </Text>
